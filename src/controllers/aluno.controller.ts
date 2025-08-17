@@ -7,14 +7,12 @@ export const getAlunos = async (req: Request, res: Response) => {
         const { rows } = await db.query('SELECT * FROM aluno ORDER BY id_aluno ASC', []);
         res.status(200).json(rows);
     } catch (error) {
-        // Fazemos um type assertion para acessar a propriedade 'message' do erro
         res.status(500).json({ error: (error as Error).message });
     }
 };
 
 // GET
 export const getAlunoById = async (req: Request, res: Response) => {
-    // O 'id' vem da URL e é sempre uma string
     const { id } = req.params;
     try {
         const { rows } = await db.query('SELECT * FROM aluno WHERE id_aluno = $1', [id]);
@@ -29,7 +27,6 @@ export const getAlunoById = async (req: Request, res: Response) => {
 
 // POST
 export const createAluno = async (req: Request, res: Response) => {
-    // Pegamos os dados do corpo (body) da requisição
     const { tx_nome, tx_sexo, dt_nascimento } = req.body;
     try {
         const { rows } = await db.query(
@@ -42,7 +39,7 @@ export const createAluno = async (req: Request, res: Response) => {
     }
 };
 
-// PUT (Atualizar) um Aluno
+// PUT
 export const updateAluno = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { tx_nome, tx_sexo, dt_nascimento } = req.body;
@@ -60,7 +57,7 @@ export const updateAluno = async (req: Request, res: Response) => {
     }
 };
 
-// DELETE (Apagar) um Aluno
+// DELETE
 export const deleteAluno = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
