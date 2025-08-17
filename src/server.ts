@@ -1,8 +1,8 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import alunoRoutes from './src/routes/aluno.routes.js';
-import estatisticasRoutes from './src/routes/estatisticas.routes.js';
+import alunoRoutes from './routes/aluno.routes.js';
+import estatisticasRoutes from './routes/estatisticas.routes.js';
 
 dotenv.config();
 const app: Express = express();
